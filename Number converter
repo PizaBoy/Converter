@@ -1,0 +1,581 @@
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+
+int binary_decimal(int n);
+int decimal_binary(int n);
+int decimal_octal(int n);
+int octal_decimal(int n);
+int binary_octal(int n);
+int octal_binary(int n);
+int dec_hex(int n);
+
+int main()
+{
+   int n;
+   int Choice;
+   cout << "Instructions: " << endl;
+   cout << "1. Enter 1 to convert binary to decimal." << endl;
+   cout << "2. Enter 2 to convert decimal to binary." << endl;
+   cout << "3. Enter 3 to convert Octal to Decimal." << endl;
+   cout << "4. Enter 4 to convert Decimal to Octal." << endl;
+   cout << "5. Enter 5 to convert Binary to Octal." << endl;
+   cout << "6. Enter 6 to convert Octal to Binary." << endl;
+   cout << "7. Enter 7 to convert decimal to hexadecimal." << endl;
+
+   cin >> Choice;
+   
+   if (Choice ==1)
+   {
+       cout << "Enter a binary number: ";
+       cin >> n;
+       cout << n << " in binary = " << binary_decimal(n) << " in decimal";
+   }
+   if (Choice == 2)
+   {
+       cout << "Enter a binary number: ";
+       cin >> n;
+       cout << n << " in decimal = " << decimal_binary(n) << " in binary";
+   }
+   
+
+
+    if (Choice == 3)
+   {
+       cout << "Enter a octal number: ";
+       cin >> n;
+       cout << n << " in octal = " << octal_decimal(n) << " in decimal";
+       
+   }
+   
+   
+   if (Choice == 4)
+   {
+       cout << "Enter a decimal number: ";
+       cin >> n;
+       cout << n << " in decimal = " << decimal_octal(n) << " in octal";
+   }
+   
+
+if (Choice == 5)
+   {
+       cout << "Enter a binary number: ";
+       cin >> n;
+       cout << n << " in binary = " << binary_octal(n) << " in octal";
+   }
+   
+
+   if (Choice == 6)
+   {
+       cout << "Enter a octal number: ";
+       cin >> n;
+       cout << n << " in octal = " << octal_binary(n) << " in binary";
+   }
+    if (Choice == 7)
+   {
+       cout << "Enter a decimal number: ";
+       cin >> n;
+       cout << " Your hexadecimal value is: " <<dec_hex(n) <<  endl;
+   }
+   return 0;
+}
+int decimal_binary(int n)  /* Function to convert decimal to binary.*/
+{
+    int rem, i=1, binary=0;
+    while (n!=0)
+    {
+        rem=n%2;
+        n/=2;
+        binary+=rem*i;
+        i*=10;
+    }
+    return binary;
+}
+
+int binary_decimal(int n) /* Function to convert binary to decimal.*/
+{
+    int decimal=0, i=0, rem;
+    while (n!=0)
+    {
+        rem = n%10;
+        n/=10;
+        decimal += rem*pow(2,i);
+        ++i;
+    }
+    return decimal;
+}
+
+
+int decimal_octal(int n) /* Function to convert decimal to octal */
+{
+    int rem, i=1, octal=0;
+    while (n!=0)
+    {
+        rem=n%8;
+        n/=8;
+        octal+=rem*i;
+        i*=10;
+    }
+    return octal;
+}
+
+int octal_decimal(int n) /* Function to convert octal to decimal */
+{
+    int decimal=0, i=0, rem;
+    while (n!=0)
+    {
+        rem = n%10;
+        n/=10;
+        decimal += rem*pow(8,i);
+        ++i;
+    }
+    return decimal;
+}
+
+int binary_octal(int n)  /* Function to convert binary to octal. */
+{
+    int octal=0, decimal=0, i=0;
+    while(n!=0)
+    {
+        decimal+=(n%10)*pow(2,i);
+        ++i;
+        n/=10;
+    }
+
+/*At this point, the decimal variable contains corresponding decimal value of binary number. */
+
+    i=1;
+    while (decimal!=0)
+    {
+        octal+=(decimal%8)*i;
+        decimal/=8;
+        i*=10;
+    }
+    return octal;
+}
+int octal_binary(int n)  /* Function to convert octal to binary.*/
+{
+    int decimal=0, binary=0, i=0;
+    while (n!=0)
+    {
+        decimal+=(n%10)*pow(8,i);
+        ++i;
+        n/=10;
+    }
+
+/* At this point, the decimal variable contains corresponding decimal value of that octal number. */
+
+    i=1;
+    while(decimal!=0)
+    {
+        binary+=(decimal%2)*i;
+        decimal/=2;
+        i*=10;
+    }
+    return binary;
+}
+
+int dec_hex(int n) /*converting decimal to hexadecimal
+{
+
+
+  std::cout << std::hex << n <<  '\n';
+  
+  return n;
+}
+
+
+
+
+
+Hexadecimal to binary
+#include<iostream>
+
+using namespace std;
+#define MAX 1000
+
+int main()
+{
+    char binaryNumber[MAX],hexaDecimal[MAX];
+    long int i=0;
+
+    cout<<"Enter any hexadecimal number: ";
+    cin>>hexaDecimal;
+
+    cout<<"nEquivalent binary value: ";
+    while(hexaDecimal[i])
+    {
+         switch(hexaDecimal[i])
+         {
+             case '0': cout<<"0000"; break;
+             case '1': cout<<"0001"; break;
+             case '2': cout<<"0010"; break;
+             case '3': cout<<"0011"; break;
+             case '4': cout<<"0100"; break;
+             case '5': cout<<"0101"; break;
+             case '6': cout<<"0110"; break;
+             case '7': cout<<"0111"; break;
+             case '8': cout<<"1000"; break;
+             case '9': cout<<"1001"; break;
+             case 'A': cout<<"1010"; break;
+             case 'B': cout<<"1011"; break;
+             case 'C': cout<<"1100"; break;
+             case 'D': cout<<"1101"; break;
+             case 'E': cout<<"1110"; break;
+             case 'F': cout<<"1111"; break;
+             case 'a': cout<<"1010"; break;
+             case 'b': cout<<"1011"; break;
+             case 'c': cout<<"1100"; break;
+             case 'd': cout<<"1101"; break;
+             case 'e': cout<<"1110"; break;
+             case 'f': cout<<"1111"; break;
+             default:  cout<<"nInvalid hexadecimal digit "<<hexaDecimal[i];
+         }
+         i++;
+    }
+
+    return 0;
+}
+               																																																																Hexidecimal to Octal
+#include<iostream.h>
+#include<conio.h>
+#include<string.h>
+#include<math.h>
+int hex_to_oct(char hex[]);
+void main()
+{
+	clrscr();
+	char hex[20],c;
+	int n;
+	cout<<"Enter Hexadecimal Number : ";
+	cin>>hex;
+	cout<<"Equivalent Octal Value = %d",hex_to_oct(hex);
+	getch();
+}
+int hex_to_oct(char hex[])
+{
+	int i,len, dec=0, oct=0;
+	for(len=0; hex[len]!='\0'; len++);
+	for(i=0; hex[i]!='\0'; i++,len--)
+	{
+		if(hex[i]>='0' && hex[i]<='9')
+		{
+			dec= dec + (hex[i]-'0')*pow(16,len-1);
+		}
+		if(hex[i]>='A' && hex[i]<='F')
+		{
+			dec = dec + (hex[i]-55)*pow(16,len-1);
+		}
+		if(hex[i]>='a' && hex[i]<='f')
+		{
+			dec = dec + (hex[i]-87)*pow(16,len-1);
+		}
+	} /* Now dec contains the decimal value of given hexadecimal number. */
+	i=1;
+	while(dec!=0)
+	{
+		oct = oct + (dec%8)*i;
+		dec = dec/8;
+		i = i*10;
+	}
+	return oct;
+}
+
+
+Binary to Hexadecimal
+#include <stdio.h>
+
+int main()
+{
+    int hex[1000], i=1, j=0, rem, dec = 0, bin;
+
+    printf("Enter a Binary Number: ");
+    scanf("%d",&bin);
+
+    while(bin>0){
+        rem = bin % 2;
+        dec = dec + (rem*i);
+        i = i * 2;
+        bin = bin / 10;
+    }
+    /* At this state our input number is converted into Decimal Number */
+    i = 0;
+    while(dec!=0){
+       hex[i] = dec % 16;
+       dec = dec/16;
+       i++;
+    }
+    printf("Equivalent HexaDecimal value: ");
+    for(j=i-1;j>=0;j--){
+        if(hex[j]>9)
+            printf("%c",hex[j]+55);
+        else
+            printf("%d",hex[j]);
+    }
+    return 0;
+}
+DEC - BCD
+#include <iostream>
+#include <string>
+using namespace std;
+
+void binaryConv(int);
+
+int main()
+{
+	int i, a, b, c;
+
+	for (i = 0; i < 10; i++)
+	{
+	a = i / 100;
+	b = (i / 10) % 10;
+	c = i % 10;
+	binaryConv(a);
+	cout << " ";
+	binaryConv(b);
+	cout << " ";
+	binaryConv(c);
+	cout << endl;
+	}
+
+	system("pause");
+}
+
+void binaryConv(int num) 
+{
+	int remain;
+
+	if(num <= 1) {
+		cout << num;
+		return;
+	}
+
+	remain = num%2;
+	binaryConv(num >> 1); 
+	cout << remain;
+}
+HEX - DEC
+#include <iostream>
+#include <iomanip>
+
+int main()
+{
+    int x, y;
+    std::stringstream stream;
+
+    std::cin >> x;
+    stream << x;
+    stream >> std::hex >> y;
+    std::cout << y;
+
+    return 0;
+}
+
+SEPERATE 
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+
+int binary_decimal(int n);
+int decimal_binary(int n);
+int decimal_octal(int n);
+int octal_decimal(int n);
+int binary_octal(int n);
+int octal_binary(int n);
+int dec_hex(int n);
+int dec_BCD(int n);
+
+int main()
+{
+   int n;
+   int Choice;
+   cout << "Instructions: " << endl;
+   cout << "1. Enter 1 to convert binary to decimal." << endl;
+   cout << "2. Enter 2 to convert decimal to binary." << endl;
+   cout << "3. Enter 3 to convert Octal to Decimal." << endl;
+   cout << "4. Enter 4 to convert Decimal to Octal." << endl;
+   cout << "5. Enter 5 to convert Binary to Octal." << endl;
+   cout << "6. Enter 6 to convert Octal to Binary." << endl;
+   cout << "7. Enter 7 to convert decimal to hexadecimal." << endl;
+   cout << "8. Enter 8 to convert decimal to BCD." << endl;
+
+   cin >> Choice;
+   
+   if (Choice ==1)
+   {
+       cout << "Enter a binary number: ";
+       cin >> n;
+       cout << n << " in binary = " << binary_decimal(n) << " in decimal";
+   }
+   if (Choice == 2)
+   {
+       cout << "Enter a binary number: ";
+       cin >> n;
+       cout << n << " in decimal = " << decimal_binary(n) << " in binary";
+   }
+   
+
+
+    if (Choice == 3)
+   {
+       cout << "Enter a octal number: ";
+       cin >> n;
+       cout << n << " in octal = " << octal_decimal(n) << " in decimal";
+       
+   }
+   
+   
+   if (Choice == 4)
+   {
+       cout << "Enter a decimal number: ";
+       cin >> n;
+       cout << n << " in decimal = " << decimal_octal(n) << " in octal";
+   }
+   
+
+if (Choice == 5)
+   {
+       cout << "Enter a binary number: ";
+       cin >> n;
+       cout << n << " in binary = " << binary_octal(n) << " in octal";
+   }
+   
+
+   if (Choice == 6)
+   {
+       cout << "Enter a octal number: ";
+       cin >> n;
+       cout << n << " in octal = " << octal_binary(n) << " in binary";
+   }
+    if (Choice == 7)
+   {
+       cout << "Enter a decimal number: ";
+       cin >> n;
+       cout << " Your hexadecimal value is: " <<dec_hex(n) <<  endl;
+   }
+   if (Choice == 8)
+   {
+       cout << "Enter a decimal value: ";
+       cin >> n;
+       cout << " Your BCD value is: " << dec_BCD <<  endl;
+   }
+   return 0;
+}
+int decimal_binary(int n)  /* Function to convert decimal to binary.*/
+{
+    int rem, i=1, binary=0;
+    while (n!=0)
+    {
+        rem=n%2;
+        n/=2;
+        binary+=rem*i;
+        i*=10;
+    }
+    return binary;
+}
+
+int binary_decimal(int n) /* Function to convert binary to decimal.*/
+{
+    int decimal=0, i=0, rem;
+    while (n!=0)
+    {
+        rem = n%10;
+        n/=10;
+        decimal += rem*pow(2,i);
+        ++i;
+    }
+    return decimal;
+}
+
+
+int decimal_octal(int n) /* Function to convert decimal to octal */
+{
+    int rem, i=1, octal=0;
+    while (n!=0)
+    {
+        rem=n%8;
+        n/=8;
+        octal+=rem*i;
+        i*=10;
+    }
+    return octal;
+}
+
+int octal_decimal(int n) /* Function to convert octal to decimal */
+{
+    int decimal=0, i=0, rem;
+    while (n!=0)
+    {
+        rem = n%10;
+        n/=10;
+        decimal += rem*pow(8,i);
+        ++i;
+    }
+    return decimal;
+}
+
+int binary_octal(int n)  /* Function to convert binary to octal. */
+{
+    int octal=0, decimal=0, i=0;
+    while(n!=0)
+    {
+        decimal+=(n%10)*pow(2,i);
+        ++i;
+        n/=10;
+    }
+
+/*At this point, the decimal variable contains corresponding decimal value of binary number. */
+
+    i=1;
+    while (decimal!=0)
+    {
+        octal+=(decimal%8)*i;
+        decimal/=8;
+        i*=10;
+    }
+    return octal;
+}
+int octal_binary(int n)  /* Function to convert octal to binary.*/
+{
+    int decimal=0, binary=0, i=0;
+    while (n!=0)
+    {
+        decimal+=(n%10)*pow(8,i);
+        ++i;
+        n/=10;
+    }
+
+/* At this point, the decimal variable contains corresponding decimal value of that octal number. */
+
+    i=1;
+    while(decimal!=0)
+    {
+        binary+=(decimal%2)*i;
+        decimal/=2;
+        i*=10;
+    }
+    return binary;
+}
+
+int dec_hex(int n)
+{
+
+
+  std::cout << std::hex << n <<  '\n';
+  
+  return n;
+}
+
+int dec_BCD(int n)
+{
+    int temp, final;
+    temp = n/10 * 16;
+    final = temp + n%10;
+    
+
+return final;
+}
